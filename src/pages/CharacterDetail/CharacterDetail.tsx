@@ -4,11 +4,13 @@ import { getCharacterById, getLocationByUrl, getCharactersByIds } from '../../se
 import type { Character } from '../../types/character';
 import { Header } from '../../components/Header/Header';
 import { CharacterCard } from '../../components/CharacterCard/CharacterCard';
+import { useFavorites } from '../../contexts/FavoritesContext';
 import './CharacterDetail.css';
 
 export function CharacterDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { isFavorite, toggleFavorite } = useFavorites();
   const [character, setCharacter] = useState<Character | null>(null);
   const [sameLocationCharacters, setSameLocationCharacters] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
@@ -87,7 +89,17 @@ export function CharacterDetail() {
             />
             <div className="character-detail__info">
               <div className="character-detail__header">
-                <h1 className="character-detail__name">{character.name}</h1>
+                <div className="character-detail__title-section">
+                  <h1 className="character-detail__name">{character.name}</h1>
+                  <button
+                    className={`character-detail__favorite ${isFavorite(character.id) ? 'character-detail__favorite--active' : ''}`}
+                    onClick={() => toggleFavorite(character)}
+                    aria-label={isFavorite(character.id) ? 'Quitar de favoritos' : 'Añadir a favoritos'}
+                    title={isFavorite(character.id) ? 'Quitar de favoritos' : 'Añadir a favoritos'}
+                  >
+                    ♥
+                  </button>
+                </div>
                 <span className={`character-detail__status character-detail__status--${character.status.toLowerCase()}`}>
                   {character.status}
                 </span>

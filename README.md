@@ -34,9 +34,17 @@ personajes y mostrar información detallada de cada uno.
   - Otros personajes que viven en la misma ubicación
   - Navegación entre personajes relacionados
   - Botón de volver integrado en el header
+  - Añadir/quitar favoritos desde la página de detalle
+
+- **Sistema de personajes favoritos**:
+  - Añadir y eliminar favoritos desde tarjetas y página de detalle
+  - Página dedicada para ver todos los favoritos
+  - Persistencia en localStorage
+  - Contador de favoritos en el header
+  - Navegación a detalle desde favoritos
 
 - **Navegación con React Router**:
-  - Rutas para listado y detalle de personajes
+  - Rutas para listado, detalle de personajes y favoritos.
 
 - **Diseño responsive**:
   - Header fijo en la parte superior
@@ -49,7 +57,6 @@ personajes y mostrar información detallada de cada uno.
   - Especie
   - Localización
   - Estado
-- Sistema de personajes favoritos
 
 ---
 

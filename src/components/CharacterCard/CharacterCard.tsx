@@ -1,4 +1,5 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useFavorites } from '../../contexts/FavoritesContext';
 import type { Character } from '../../types/character';
 import './CharacterCard.css';
 
@@ -9,27 +10,42 @@ interface CharacterCardProps {
 
 export function CharacterCard({ character, clickable = true }: CharacterCardProps) {
   const navigate = useNavigate();
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const favorite = isFavorite(character.id);
 
-  const handleClick = () => {
+  const handleCardClick = () => {
     if (clickable) {
       navigate(`/character/${character.id}`);
     }
+  };
+
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    toggleFavorite(character);
   };
 
   return (
     <div 
       className={`character-card ${!clickable ? 'character-card--no-click' : ''}`}
       tabIndex={clickable ? 0 : -1}
-      onClick={handleClick}
+      onClick={handleCardClick}
       onKeyDown={(e) => {
         if ((e.key === 'Enter' || e.key === ' ') && clickable) {
           e.preventDefault();
-          handleClick();
+          handleCardClick();
         }
       }}
     >
       <div className="character-card__image-wrapper">
         <img src={character.image} alt={character.name} />
+        <button
+          className={`character-card__favorite ${favorite ? 'character-card__favorite--active' : ''}`}
+          onClick={handleFavoriteClick}
+          aria-label={favorite ? 'Quitar de favoritos' : 'Añadir a favoritos'}
+          title={favorite ? 'Quitar de favoritos' : 'Añadir a favoritos'}
+        >
+          ♥
+        </button>
         <span className={`character-card__status character-card__status--${character.status.toLowerCase()}`}>
           {character.status}
         </span>
