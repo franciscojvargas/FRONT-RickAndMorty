@@ -1,13 +1,33 @@
+import { useNavigate, useLocation } from 'react-router-dom';
 import type { Character } from '../../types/character';
 import './CharacterCard.css';
 
 interface CharacterCardProps {
   character: Character;
+  clickable?: boolean;
 }
 
-export function CharacterCard({ character }: CharacterCardProps) {
+export function CharacterCard({ character, clickable = true }: CharacterCardProps) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (clickable) {
+      navigate(`/character/${character.id}`);
+    }
+  };
+
   return (
-    <div className="character-card" tabIndex={0}>
+    <div 
+      className={`character-card ${!clickable ? 'character-card--no-click' : ''}`}
+      tabIndex={clickable ? 0 : -1}
+      onClick={handleClick}
+      onKeyDown={(e) => {
+        if ((e.key === 'Enter' || e.key === ' ') && clickable) {
+          e.preventDefault();
+          handleClick();
+        }
+      }}
+    >
       <div className="character-card__image-wrapper">
         <img src={character.image} alt={character.name} />
         <span className={`character-card__status character-card__status--${character.status.toLowerCase()}`}>
