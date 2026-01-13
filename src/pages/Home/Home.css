@@ -1,0 +1,35 @@
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.home-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #333;
+  text-align: center;
+}
+
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 48px;
+  font-size: 18px;
+}
+
+.loading {
+  color: #666;
+}
+
+.error {
+  color: #f44336;
+}
+
