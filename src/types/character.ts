@@ -27,3 +27,11 @@ export interface ApiResponse<T> {
     };
     results: T[];
 }
+
+export interface CharacterFilters {
+    name?: string;
+    status?: 'Alive' | 'Dead' | 'unknown';
+    species?: string;
+    location?: string;
+    page?: number;
+}

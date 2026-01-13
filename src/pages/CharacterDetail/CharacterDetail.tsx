@@ -82,28 +82,31 @@ export function CharacterDetail() {
       <div className="character-detail-container">
         <div className="character-detail">
           <div className="character-detail__main">
-            <img 
-              src={character.image} 
-              alt={character.name}
-              className="character-detail__image"
-            />
             <div className="character-detail__info">
-              <div className="character-detail__header">
-                <div className="character-detail__title-section">
-                  <h1 className="character-detail__name">{character.name}</h1>
-                  <button
-                    className={`character-detail__favorite ${isFavorite(character.id) ? 'character-detail__favorite--active' : ''}`}
-                    onClick={() => toggleFavorite(character)}
-                    aria-label={isFavorite(character.id) ? 'Quitar de favoritos' : 'Añadir a favoritos'}
-                    title={isFavorite(character.id) ? 'Quitar de favoritos' : 'Añadir a favoritos'}
-                  >
-                    ♥
-                  </button>
-                </div>
+              <div className="character-detail__image-wrapper">
+                <img 
+                  src={character.image} 
+                  alt={character.name}
+                  className="character-detail__image"
+                />
                 <span className={`character-detail__status character-detail__status--${character.status.toLowerCase()}`}>
                   {character.status}
                 </span>
               </div>
+              <div className="character-detail__content">
+                <div className="character-detail__header">
+                  <div className="character-detail__title-section">
+                    <h1 className="character-detail__name">{character.name}</h1>
+                    <button
+                      className={`character-detail__favorite ${isFavorite(character.id) ? 'character-detail__favorite--active' : ''}`}
+                      onClick={() => toggleFavorite(character)}
+                      aria-label={isFavorite(character.id) ? 'Quitar de favoritos' : 'Añadir a favoritos'}
+                      title={isFavorite(character.id) ? 'Quitar de favoritos' : 'Añadir a favoritos'}
+                    >
+                      ♥
+                    </button>
+                  </div>
+                </div>
               <div className="character-detail__details">
                 <div className="character-detail__detail-item">
                   <span className="character-detail__label">Especie</span>
@@ -131,6 +134,7 @@ export function CharacterDetail() {
                   <span className="character-detail__label">Episodios</span>
                   <span className="character-detail__value">{character.episode.length}</span>
                 </div>
+              </div>
               </div>
             </div>
           </div>
