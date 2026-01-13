@@ -1,15 +1,24 @@
-import type { Character, ApiResponse, Location } from '../types/character';
+import type { Character, ApiResponse, Location, CharacterFilters } from '../types/character';
 
 const API_BASE_URL = 'https://rickandmortyapi.com/api';
 
-export async function getCharacters(name?: string, page?: number): Promise<ApiResponse<Character>> {
+export async function getCharacters(filters?: CharacterFilters): Promise<ApiResponse<Character>> {
   const params = new URLSearchParams();
   
-  if (name) {
-    params.append('name', name);
+  if (filters?.name) {
+    params.append('name', filters.name);
   }
-  if (page) {
-    params.append('page', page.toString());
+  if (filters?.status) {
+    params.append('status', filters.status);
+  }
+  if (filters?.species) {
+    params.append('species', filters.species);
+  }
+  if (filters?.location) {
+    params.append('location', filters.location);
+  }
+  if (filters?.page) {
+    params.append('page', filters.page.toString());
   }
   
   const url = `${API_BASE_URL}/character${params.toString() ? `?${params.toString()}` : ''}`;
@@ -24,6 +33,54 @@ export async function getCharacters(name?: string, page?: number): Promise<ApiRe
   }
   
   return response.json();
+}
+
+export async function getAllSpecies(): Promise<string[]> {
+  const species = new Set<string>();
+  let nextUrl: string | null = `${API_BASE_URL}/character`;
+  
+  try {
+    while (nextUrl) {
+      const response = await fetch(nextUrl);
+      if (!response.ok) break;
+      
+      const data: ApiResponse<Character> = await response.json();
+      data.results.forEach(char => {
+        if (char.species) species.add(char.species);
+      });
+      
+      nextUrl = data.info.next;
+      if (!data.info.next) break;
+    }
+  } catch (error) {
+    console.error('Error obteniendo especies:', error);
+  }
+  
+  return Array.from(species).sort();
+}
+
+export async function getAllLocations(): Promise<string[]> {
+  const locations = new Set<string>();
+  let nextUrl: string | null = `${API_BASE_URL}/location`;
+  
+  try {
+    while (nextUrl) {
+      const response = await fetch(nextUrl);
+      if (!response.ok) break;
+      
+      const data: ApiResponse<Location> = await response.json();
+      data.results.forEach(loc => {
+        if (loc.name) locations.add(loc.name);
+      });
+      
+      nextUrl = data.info.next;
+      if (!data.info.next) break;
+    }
+  } catch (error) {
+    console.error('Error obteniendo localizaciones:', error);
+  }
+  
+  return Array.from(locations).sort();
 }
 
 export async function getCharacterById(id: number): Promise<Character> {

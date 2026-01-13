@@ -4,73 +4,7 @@ Aplicación frontend desarrollada en React que consume la API pública
 [The Rick and Morty API](https://rickandmortyapi.com/documentation) para listar
 personajes y mostrar información detallada de cada uno.
 
----
-
-## 🚀 Funcionalidades Implementadas
-
-### ✅ Funcionalidades Actuales
-
-- **Listado de personajes** con información completa:
-  - Nombre, estado, especie, tipo y género
-  - Planeta de origen y ubicación actual
-  - Avatar con badge de estado (Alive/Dead/Unknown)
-  - Efectos hover y focus en las tarjetas
-
-- **Búsqueda de personajes**:
-  - Búsqueda en tiempo real por nombre
-  - Debounce de 300ms para optimizar peticiones
-  - Manejo de resultados vacíos
-
-- **Paginación completa**:
-  - Navegación entre páginas con botones Anterior/Siguiente
-  - Selección directa de páginas con botones numerados
-  - Indicador de página actual y total de páginas
-  - Elipsis inteligente para muchas páginas
-
-- **Página de detalle de personaje**:
-  - Visualización completa de información del personaje
-  - Imagen destacada con el estado del personaje
-  - Información detallada (especie, tipo, género, origen, ubicación, episodios)
-  - Otros personajes que viven en la misma ubicación
-  - Navegación entre personajes relacionados
-  - Botón de volver integrado en el header
-  - Añadir/quitar favoritos desde la página de detalle
-
-- **Sistema de personajes favoritos**:
-  - Añadir y eliminar favoritos desde tarjetas y página de detalle
-  - Página dedicada para ver todos los favoritos
-  - Persistencia en localStorage
-  - Contador de favoritos en el header
-  - Navegación a detalle desde favoritos
-
-- **Navegación con React Router**:
-  - Rutas para listado, detalle de personajes y favoritos.
-
-- **Diseño responsive**:
-  - Header fijo en la parte superior
-  - Diseño adaptativo para móviles y tablets
-  - Grid responsive para las tarjetas de personajes
-
-### 🚧 Funcionalidades Pendientes
-
-- Filtrado adicional de personajes por:
-  - Especie
-  - Localización
-  - Estado
-
----
-
-## 🛠️ Tecnologías utilizadas
-
-- **React**
-- **TypeScript**
-- **React Router DOM** para navegación
-- **Vite** como herramienta de desarrollo y build
-- **The Rick and Morty API** como fuente de datos
-
----
-
-## ▶️ Ejecución del proyecto
+## Instrucciones para ejecutar el proyecto
 
 ### Requisitos previos
 - Node.js (versión 22 o superior)
@@ -85,9 +19,24 @@ npm run dev
 
 La aplicación se abrirá en `http://localhost:5173`
 
-### Scripts disponibles
+## Arquitectura y decisiones técnicas
 
-- `npm run dev` - Inicia el servidor de desarrollo
-- `npm run build` - Construye la aplicación para producción
-- `npm run preview` - Previsualiza la build de producción
-- `npm run lint` - Ejecuta el linter para verificar el código
+El proyecto está estructurado en componentes, páginas, servicios y contextos. Se usa React con TypeScript y Vite.
+
+- **Estructura**: Separación entre páginas (Home, CharacterDetail, Favorites), componentes reutilizables (CharacterCard, Header) y servicios (api.ts para las llamadas a la API).
+
+- **Estado global**: Context API para gestionar los favoritos con persistencia en localStorage.
+
+- **Routing**: React Router DOM para las rutas principales. El header actúa como navegación principal.
+
+- **Estilos**: CSS modules por componente para mantener estilos encapsulados. Diseño responsive.
+
+- **API**: Servicio centralizado para las llamadas a The Rick and Morty API.
+
+- **TypeScript**: Tipos definidos para Character, Location y respuestas de la API para mayor seguridad de tipos.
+
+## Mejoras futuras
+
+- Tests unitarios y de integración
+- Añadir más filtros de búsqueda
+- Sistema de notificaciones para acciones (añadir/eliminar favoritos)

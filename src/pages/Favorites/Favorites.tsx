@@ -10,8 +10,6 @@ export function Favorites() {
     <>
       <Header />
       <div className="favorites-container">
-        <h1 className="favorites-title">Personajes Favoritos</h1>
-        
         {favorites.length === 0 ? (
           <div className="favorites-empty">
             <p>No tienes personajes favoritos aún.</p>

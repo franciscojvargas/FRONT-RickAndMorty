@@ -6,24 +6,28 @@ export function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const { favorites } = useFavorites();
-  const isDetailPage = location.pathname.startsWith('/character/');
+  const isHomePage = location.pathname === '/';
   const isFavoritesPage = location.pathname === '/favorites';
+
+  const handleTitleClick = () => {
+    if (!isHomePage) {
+      navigate('/');
+    }
+  };
 
   return (
     <header className="header">
       <div className="header-content">
-        {isDetailPage && (
-          <button className="header-back-button" onClick={() => navigate('/')}>
-            Volver
-          </button>
-        )}
-        <Link to="/" className="header-title-link">
-          <h1 className="header-title">Rick and Morty</h1>
-        </Link>
+        <h1 
+          className={`header-title ${!isHomePage ? 'header-title--clickable' : ''}`}
+          onClick={handleTitleClick}
+        >
+          Rick and Morty
+        </h1>
         <nav className="header-nav">
           <Link
             to="/"
-            className={`header-nav__link ${location.pathname === '/' ? 'header-nav__link--active' : ''}`}
+            className={`header-nav__link ${isHomePage ? 'header-nav__link--active' : ''}`}
           >
             Personajes
           </Link>
