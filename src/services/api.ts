@@ -2,10 +2,17 @@ import type { Character, ApiResponse } from '../types/character';
 
 const API_BASE_URL = 'https://rickandmortyapi.com/api';
 
-export async function getCharacters(name?: string): Promise<ApiResponse<Character>> {
-  const url = name 
-    ? `${API_BASE_URL}/character?name=${encodeURIComponent(name)}`
-    : `${API_BASE_URL}/character`;
+export async function getCharacters(name?: string, page?: number): Promise<ApiResponse<Character>> {
+  const params = new URLSearchParams();
+  
+  if (name) {
+    params.append('name', name);
+  }
+  if (page) {
+    params.append('page', page.toString());
+  }
+  
+  const url = `${API_BASE_URL}/character${params.toString() ? `?${params.toString()}` : ''}`;
   
   const response = await fetch(url);
   
