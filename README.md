@@ -4,28 +4,44 @@ Aplicación frontend desarrollada en React que consume la API pública
 [The Rick and Morty API](https://rickandmortyapi.com/documentation) para listar
 personajes y mostrar información detallada de cada uno.
 
-> Proyecto en desarrollo 🚧
-
 ---
 
-## 🚀 Funcionalidad
+## 🚀 Funcionalidades Implementadas
 
-La aplicación permitirá:
+### ✅ Funcionalidades Actuales
 
-- Mostrar un listado de personajes con información básica:
-  - Nombre
-  - Planeta de origen
-  - Avatar
-- Visualizar el detalle de un personaje al hacer clic:
+- **Listado de personajes** con información completa:
   - Nombre, estado, especie, tipo y género
-  - Ubicación actual
+  - Planeta de origen y ubicación actual
+  - Avatar con badge de estado (Alive/Dead/Unknown)
+  - Efectos hover y focus en las tarjetas
+
+- **Búsqueda de personajes**:
+  - Búsqueda en tiempo real por nombre
+  - Debounce de 300ms para optimizar peticiones
+  - Manejo de resultados vacíos
+
+- **Paginación completa**:
+  - Navegación entre páginas con botones Anterior/Siguiente
+  - Selección directa de páginas con botones numerados
+  - Indicador de página actual y total de páginas
+  - Elipsis inteligente para muchas páginas
+
+- **Diseño responsive**:
+  - Header fijo en la parte superior
+  - Diseño adaptativo para móviles y tablets
+  - Grid responsive para las tarjetas de personajes
+
+### 🚧 Funcionalidades Pendientes
+
+- Visualizar el detalle de un personaje al hacer clic:
+  - Información completa del personaje
   - Otros personajes que viven en el mismo planeta
-- Búsqueda y filtrado de personajes por:
-  - Nombre
+- Filtrado adicional de personajes por:
   - Especie
   - Localización
-- Funcionalidad adicional:
-  - Sistema de personajes favoritos
+  - Estado
+- Sistema de personajes favoritos
 
 ---
 
@@ -49,3 +65,13 @@ La aplicación permitirá:
 ```bash
 npm install
 npm run dev
+```
+
+La aplicación se abrirá en `http://localhost:5173`
+
+### Scripts disponibles
+
+- `npm run dev` - Inicia el servidor de desarrollo
+- `npm run build` - Construye la aplicación para producción
+- `npm run preview` - Previsualiza la build de producción
+- `npm run lint` - Ejecuta el linter para verificar el código
