@@ -17,6 +17,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.header-back-button {
+  position: absolute;
+  left: 24px;
+  padding: 8px 16px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  backdrop-filter: blur(10px);
+}
+
+.header-back-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: white;
 }
 
 .header-title {
@@ -34,5 +55,11 @@
 
   .header-title {
     font-size: 24px;
+  }
+
+  .header-back-button {
+    left: 16px;
+    padding: 6px 12px;
+    font-size: 12px;
   }
 }

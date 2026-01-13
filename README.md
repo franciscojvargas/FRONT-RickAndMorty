@@ -27,6 +27,17 @@ personajes y mostrar información detallada de cada uno.
   - Indicador de página actual y total de páginas
   - Elipsis inteligente para muchas páginas
 
+- **Página de detalle de personaje**:
+  - Visualización completa de información del personaje
+  - Imagen destacada con el estado del personaje
+  - Información detallada (especie, tipo, género, origen, ubicación, episodios)
+  - Otros personajes que viven en la misma ubicación
+  - Navegación entre personajes relacionados
+  - Botón de volver integrado en el header
+
+- **Navegación con React Router**:
+  - Rutas para listado y detalle de personajes
+
 - **Diseño responsive**:
   - Header fijo en la parte superior
   - Diseño adaptativo para móviles y tablets
@@ -34,9 +45,6 @@ personajes y mostrar información detallada de cada uno.
 
 ### 🚧 Funcionalidades Pendientes
 
-- Visualizar el detalle de un personaje al hacer clic:
-  - Información completa del personaje
-  - Otros personajes que viven en el mismo planeta
 - Filtrado adicional de personajes por:
   - Especie
   - Localización
@@ -49,6 +57,7 @@ personajes y mostrar información detallada de cada uno.
 
 - **React**
 - **TypeScript**
+- **React Router DOM** para navegación
 - **Vite** como herramienta de desarrollo y build
 - **The Rick and Morty API** como fuente de datos
 

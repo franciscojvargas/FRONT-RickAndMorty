@@ -8,6 +8,10 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.character-card--no-click {
+  cursor: default;
+}
+
 .character-card:hover,
 .character-card:focus {
   transform: translateY(-8px) scale(1.02);
